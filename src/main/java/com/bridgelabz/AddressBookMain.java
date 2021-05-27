@@ -48,7 +48,11 @@ public class AddressBookMain
             choice = scan.nextInt();
         }
         while (choice!=0);
-        System.out.println("----UPDATED---- ");
+        System.out.println("----UPDATED----");
+        System.out.println("Enter Person's first name to be deleted");
+        firstName = scan.next();
+        personDetails.remove(firstName);
+        System.out.println("----PERSON DELETED---- ");
     }
 
 }
