@@ -1,12 +1,11 @@
 package com.bridgelabz;
 
 import java.util.Scanner;
-import java.util.HashMap;
-public class AddressBookMain
+
+public class AddressBookMain extends CollectionClass
 {
     public static void main(String[] args)
     {
-        HashMap<String,UpdateContact> personDetails = new HashMap<>();
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = scan.next();
@@ -38,7 +37,7 @@ public class AddressBookMain
         int choice=1;
         do
         {
-            System.out.println("Enter the name");
+            System.out.println("Enter the name to edit : ");
             firstName = scan.next();
             System.out.println("EDIT OPTIONS\n1.Address\n2.City\n3.State\n4.Zip Code\n5.Phone Number");
             System.out.println("ENTER YOUR CHOICE");
@@ -53,6 +52,6 @@ public class AddressBookMain
         firstName = scan.next();
         personDetails.remove(firstName);
         System.out.println("----PERSON DELETED---- ");
-    }
 
+    }
 }

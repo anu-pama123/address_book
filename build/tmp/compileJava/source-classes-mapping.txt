@@ -2,5 +2,7 @@ com/bridgelabz/AddressBook.java
  com.bridgelabz.AddressBook
 com/bridgelabz/UpdateContact.java
  com.bridgelabz.UpdateContact
+com/bridgelabz/CollectionClass.java
+ com.bridgelabz.CollectionClass
 com/bridgelabz/AddressBookMain.java
  com.bridgelabz.AddressBookMain
