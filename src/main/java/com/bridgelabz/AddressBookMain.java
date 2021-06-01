@@ -6,6 +6,10 @@ public class AddressBookMain extends CollectionClass
 {
     private static int choice;
     public static CollectionClass collectionObject = new CollectionClass();
+    public static boolean isDuplicate(String firstName)
+    {
+        return collectionObject.personDetails.containsKey(firstName);
+    }
     public static void main(String[] args)
     {
         do
@@ -14,41 +18,46 @@ public class AddressBookMain extends CollectionClass
             System.out.println("MENU OPTIONS\n1.Add\n2.Edit\n3.Delete");
             System.out.println("ENTER YOUR CHOICE");
             choice = scan.nextInt();
-            switch (choice)
-            {
-                case 1:
-                    do {
+            switch (choice) {
+                    case 1:
+                        do {System.out.println("Enter first name");
+                            String firstName = scan.next();
+                            if ((isDuplicate(firstName)))
+                            {
+                                System.out.println(firstName + "'s details are already Present");
+                                break;
+                            }
+                            System.out.println("Enter last name");
+                            String lastName = scan.next();
+                            System.out.println("Enter your address");
+                            String address = scan.next();
+                            System.out.println("Enter your city");
+                            String city = scan.next();
+                            System.out.println("Enter your state");
+                            String state = scan.next();
+                            System.out.println("Enter your email");
+                            String email = scan.next();
+                            System.out.println("Enter your zip code");
+                            String zipCode = scan.next();
+                            System.out.println("Enter your Phone number");
+                            String phoneNumber = scan.next();
+                            System.out.println("ADDED DETAILS");
+                            UpdateContact object = new UpdateContact(firstName, lastName, address, city, state, email, zipCode, phoneNumber);
+                            System.out.println("FirstName : " + object.firstName);
+                            System.out.println("LastName : " + object.lastName);
+                            System.out.println("Address : " + object.address);
+                            System.out.println("City : " + object.city);
+                            System.out.println("State : " + object.state);
+                            System.out.println("EmailId : " + object.emailId);
+                            System.out.println("ZipCode : " + object.zipCode);
+                            System.out.println("Phone Number : " + object.phoneNumber);
+                            collectionObject.personDetails.put(firstName, object);
+                            System.out.println("Enter 0 to quit, Any other number to Add another person");
+                            choice = scan.nextInt();
+                            }while (choice!=0);
+                System.out.println("Enter 0 to quit, Any other number to Add another person");
+                choice = scan.nextInt();
 
-                        System.out.println("Enter first name");
-                        String firstName = scan.next();
-                        System.out.println("Enter last name");
-                        String lastName = scan.next();
-                        System.out.println("Enter your address");
-                        String address = scan.next();
-                        System.out.println("Enter your city");
-                        String city = scan.next();
-                        System.out.println("Enter your state");
-                        String state = scan.next();
-                        System.out.println("Enter your email");
-                        String email = scan.next();
-                        System.out.println("Enter your zip code");
-                        String zipCode = scan.next();
-                        System.out.println("Enter your Phone number");
-                        String phoneNumber = scan.next();
-                        System.out.println("ADDED DETAILS");
-                        UpdateContact object = new UpdateContact(firstName, lastName, address, city, state, email, zipCode, phoneNumber);
-                        System.out.println("FirstName : " + object.firstName);
-                        System.out.println("LastName : " + object.lastName);
-                        System.out.println("Address : " + object.address);
-                        System.out.println("City : " + object.city);
-                        System.out.println("State : " + object.state);
-                        System.out.println("EmailId : " + object.emailId);
-                        System.out.println("ZipCode : " + object.zipCode);
-                        System.out.println("Phone Number : " + object.phoneNumber);
-                        collectionObject.personDetails.put(firstName, object);
-                        System.out.println("Enter 0 to quit, Any other number to Add another person");
-                        choice = scan.nextInt();
-                    }
                     while (choice != 0);
                     break;
                 case 2:
@@ -76,4 +85,4 @@ public class AddressBookMain extends CollectionClass
         }
         while (choice != 0);
     }
-    }
+}
