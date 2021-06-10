@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.Scanner;
+
 public class UpdateContact extends AddressBook
 {
     UpdateContact(String firstName, String lastName, String address, String city, String state, String emailId, String zipCode, String phoneNumber )
