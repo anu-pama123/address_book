@@ -52,6 +52,8 @@ public class AddressBookMain extends CollectionClass {
                         System.out.println("ZipCode : " + object.zipCode);
                         System.out.println("Phone Number : " + object.phoneNumber);
                         collectionObject.personDetails.put(firstName, object);
+                        collectionObject.city.put(city, object);
+                        collectionObject.state.put(state, object);
                         System.out.println("Enter 0 to quit, Any other number to Add another person");
                         choice = scan.nextInt();
                     } while (choice != 0);
