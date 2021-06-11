@@ -1,9 +1,9 @@
 package com.bridgelabz;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class AddressBookMain extends CollectionClass {
-
     private static volatile int choice;
     private static volatile int choice1;
     public static CollectionClass collectionObject = new CollectionClass();
@@ -52,8 +52,21 @@ public class AddressBookMain extends CollectionClass {
                         System.out.println("ZipCode : " + object.zipCode);
                         System.out.println("Phone Number : " + object.phoneNumber);
                         collectionObject.personDetails.put(firstName, object);
-                        collectionObject.city.put(city, object);
-                        collectionObject.state.put(state, object);
+                        if(!collectionObject.cityPersonMap.containsKey(city)){
+                            List<UpdateContact> list=new ArrayList<UpdateContact>();
+                            list.add(object);
+                            collectionObject.cityPersonMap.put(city,list);
+                        }else {
+                            collectionObject.cityPersonMap.get(city).add(object);
+                        }
+                        System.out.println(collectionObject.cityPersonMap.get(city));
+                        if(!collectionObject.statePeronMap.containsKey(state)){
+                            List<UpdateContact> list=new ArrayList<UpdateContact>();
+                            list.add(object);
+                            collectionObject.statePeronMap.put(state, list);
+                        }else {
+                            collectionObject.statePeronMap.get(state).add(object);
+                        }
                         System.out.println("Enter 0 to quit, Any other number to Add another person");
                         choice = scan.nextInt();
                     } while (choice != 0);
@@ -85,21 +98,22 @@ public class AddressBookMain extends CollectionClass {
                             System.out.println("Enter city name");
                             String city = scan.next();
                             scan.nextLine();
-                            for (String key : collectionObject.personDetails.keySet()) {
-                                String c = collectionObject.personDetails.get(key).city;
-                                if (c.equals(city)) {
-                                    System.out.println(collectionObject.personDetails.get(key).firstName);
+                            if(collectionObject.cityPersonMap.containsKey(city)){
+                                System.out.println("no of people from " +city+" is : "+collectionObject.cityPersonMap.get(city).size());
+                                for(int i = 0; i < collectionObject.cityPersonMap.get(city).size(); i++){
+                                    System.out.println(collectionObject.cityPersonMap.get(city).get(i).firstName);
                                 }
                             }
                             break;
                         case 2:
+                            int count = 0;
                             System.out.println("Enter state name");
                             String state = scan.next();
                             scan.nextLine();
-                            for (String key : collectionObject.personDetails.keySet()) {
-                                String c = collectionObject.personDetails.get(key).state;
-                                if (c.equals(state)) {
-                                    System.out.println(collectionObject.personDetails.get(key).firstName);
+                            if(collectionObject.statePeronMap.containsKey(state)){
+                                System.out.println("no of people from" + state + " is : "+collectionObject.statePeronMap.get(state).size());
+                                for(int i = 0; i< collectionObject.statePeronMap.get(state).size(); i++){
+                                    System.out.println(collectionObject.statePeronMap.get(state).get(i).firstName);
                                 }
                             }
                             break;
@@ -108,6 +122,7 @@ public class AddressBookMain extends CollectionClass {
                     }
                     System.out.println("Enter 0 to quit, any other number to return to MENU");
                     choice1 = scan.nextInt();
+
             }
         }while (choice != 0);
     }

@@ -2,17 +2,14 @@ package com.bridgelabz;
 
 import java.util.Scanner;
 
-public class UpdateContact extends AddressBook
-{
-    UpdateContact(String firstName, String lastName, String address, String city, String state, String emailId, String zipCode, String phoneNumber )
-    {
+public class UpdateContact extends AddressBook {
+    UpdateContact(String firstName, String lastName, String address, String city, String state, String emailId, String zipCode, String phoneNumber ) {
         super(firstName, lastName, address, city, state, emailId, zipCode, phoneNumber);
     }
-    public void updateContactBasedOnName(int choice)
-     {
+
+    public void updateContactBasedOnName(int choice) {
         Scanner scan = new Scanner(System.in);
-        switch (choice)
-            {
+        switch (choice) {
                 case 1: System.out.println("Enter new Address");
                     this.address = scan.next();
                     break;

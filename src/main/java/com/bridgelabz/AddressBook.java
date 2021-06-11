@@ -1,7 +1,6 @@
 package com.bridgelabz;
 
-public class AddressBook
-{
+public class AddressBook {
     String firstName;
     String lastName;
     String address;
@@ -10,8 +9,7 @@ public class AddressBook
     String emailId;
     String zipCode;
     String phoneNumber;
-    AddressBook(String firstName, String lastName, String address,  String city, String state, String emailId, String zipCode, String phoneNumber )
-    {
+    AddressBook(String firstName, String lastName, String address,  String city, String state, String emailId, String zipCode, String phoneNumber ) {
         this.firstName=firstName;
         this.lastName=lastName;
         this.address=address;
