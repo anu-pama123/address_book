@@ -15,7 +15,7 @@ public class AddressBookMain extends CollectionClass {
     public void createMenu() {
         do {
             Scanner scan = new Scanner(System.in);
-            System.out.println("MENU OPTIONS\n1.Add\n2.Edit\n3.Delete\n4.Search");
+            System.out.println("MENU OPTIONS\n1.Add\n2.Edit\n3.Delete\n4.Search\n5.View ll person\n6.sort");
             System.out.println("ENTER YOUR CHOICE");
             choice = scan.nextInt();
             switch (choice) {
@@ -122,9 +122,24 @@ public class AddressBookMain extends CollectionClass {
                     }
                     System.out.println("Enter 0 to quit, any other number to return to MENU");
                     choice1 = scan.nextInt();
-
+                case 5 :
+                    System.out.println(collectionObject.personDetails.toString());
+                    break;
+                case 6:
+                    System.out.println("SORT BY\n1.Name\n1.City\n2.State\n3.Zip code\nEnter choice");
+                    choice = scan.nextInt();
+                    switch (choice){
+                        case 1: this.sortByName();
+                            break;
+                    }
             }
         }while (choice != 0);
+    }
+
+    public void sortByName(){
+        collectionObject.personDetails.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(AddressBook::getFirstName))).
+                forEachOrdered(addressBook -> collectionObject.sortedAddressBook.put(addressBook.getKey(),addressBook.getValue()));
+        System.out.println("The Address Book Sorted by city:\n"+sortedAddressBook);
     }
 
     public static void main (String[]args){
@@ -132,3 +147,4 @@ public class AddressBookMain extends CollectionClass {
         addressBookMain.createMenu();
     }
 }
+
