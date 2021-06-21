@@ -4,8 +4,6 @@ import java.util.*;
 import java.util.Scanner;
 
 public class AddressBookMain extends CollectionClass {
-    private static volatile int choice;
-    private static volatile int choice1;
     public static CollectionClass collectionObject = new CollectionClass();
 
     public static boolean isDuplicate(String firstName) {
@@ -126,12 +124,19 @@ public class AddressBookMain extends CollectionClass {
                     System.out.println(collectionObject.personDetails.toString());
                     break;
                 case 6:
-                    System.out.println("SORT BY\n1.Name\n1.City\n2.State\n3.Zip code\nEnter choice");
+                    System.out.println("SORT BY\n1.Name\n2.City\n3.State\n4.Zip code\nEnter choice");
                     choice = scan.nextInt();
                     switch (choice){
                         case 1: this.sortByName();
-                            break;
+                        break;
+                        case 2: this.sortByCity();
+                        break;
+                        case 3:this.sortByState();
+                        break;
+                        case 4:this.sortByZip();
+                        break;
                     }
+                    break;
             }
         }while (choice != 0);
     }
@@ -139,7 +144,28 @@ public class AddressBookMain extends CollectionClass {
     public void sortByName(){
         collectionObject.personDetails.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(AddressBook::getFirstName))).
                 forEachOrdered(addressBook -> collectionObject.sortedAddressBook.put(addressBook.getKey(),addressBook.getValue()));
-        System.out.println("The Address Book Sorted by city:\n"+sortedAddressBook);
+        System.out.println("The Address Book Sorted by city:\n"+collectionObject.sortedAddressBook);
+    }
+
+    public void sortByCity()
+    {
+        collectionObject.personDetails.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(AddressBook::getCity))).
+                forEachOrdered(addressBook -> collectionObject.sortedAddressBook.put(addressBook.getKey(),addressBook.getValue()));
+        System.out.println("The Address Book Sorted by city:\n"+collectionObject.sortedAddressBook);
+    }
+
+    public void sortByState()
+    {
+        personDetails.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(AddressBook::getState))).
+                forEachOrdered(addressBook -> sortedAddressBook.put(addressBook.getKey(),addressBook.getValue()));
+        System.out.println("The Address Book Sorted by State:\n"+collectionObject.sortedAddressBook);
+    }
+
+    public void sortByZip()
+    {
+        personDetails.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(AddressBook::getZipCode))).
+                forEachOrdered(addressBook -> sortedAddressBook.put(addressBook.getKey(),addressBook.getValue()));
+        System.out.println("The Address Book Sorted by Zip Code:\n"+collectionObject.sortedAddressBook);
     }
 
     public static void main (String[]args){
